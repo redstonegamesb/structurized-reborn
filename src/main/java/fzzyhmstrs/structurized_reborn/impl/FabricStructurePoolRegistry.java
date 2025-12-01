@@ -26,7 +26,6 @@ public class FabricStructurePoolRegistry {
     private static final Map<String, String> structuresKeyRef = new HashMap<>();
     private static final Multimap<String, Pair<String, RegistryEntry<PlacedFeature>>> featureStructures = LinkedHashMultimap.create();
     private static final Multimap<String, ListPoolElement> listStructures = LinkedHashMultimap.create();
-    public static RegistryEntryLookup<StructureProcessorList> registryEntryLookup;
 
     static {
         StructurePoolAddCallback.EVENT.register(FabricStructurePoolRegistry::processRegistry);
@@ -71,7 +70,7 @@ public class FabricStructurePoolRegistry {
         return null;
     }
 
-    public static void processRegistry(FabricStructurePool structurePool) {
+    public static void processRegistry(FabricStructurePool structurePool, RegistryEntryLookup<StructureProcessorList> registryEntryLookup) {
         String poolId = structurePool.getId().toString();
         //System.out.println(poolId);
         for (String key : structuresInfo.keys()) {
